@@ -31,7 +31,7 @@ fs.readFile('myfile.txt', function (err, file) {
 
 例子:
 
-```
+```js
 mysql.query(sql1, function(err1, rows1) {
   if (err1){
     throw err1;
