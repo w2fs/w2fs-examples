@@ -1,0 +1,12 @@
+{
+  "parser": "babel-eslint",
+  "rules": {
+    "quotes": [
+      2,
+      "single"
+    ],
+    "strict": 1,
+    "semi": 2
+  },
+  "extends": "airbnb/legacy"
+}
