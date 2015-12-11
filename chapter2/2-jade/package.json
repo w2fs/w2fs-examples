@@ -1,0 +1,21 @@
+{
+  "name": "hello-world",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "start": "./node_modules/.bin/babel-node app.js",
+    "test": "./node_modules/.bin/babel-node app.js",
+    "hello": "echo 'Hello World!'"
+  },
+  "author": "willin wang",
+  "license": "MIT",
+  "dependencies": {
+    "babel-cli": "^6.3.17",
+    "babel-preset-stage-3": "^6.3.13",
+    "koa": "^2.0.0-alpha.3"
+  },
+  "devDependencies": {
+    "babel-preset-stage-3": "^6.3.13"
+  }
+}
