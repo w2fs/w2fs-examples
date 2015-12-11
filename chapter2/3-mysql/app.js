@@ -2,26 +2,13 @@
 
 var express = require('express');
 var app = express();
-var mysql = require('mysql');
-var connection = mysql.createConnection({
-  host: 'localhost',
-  user: 'root',
-  password: 'root',
-  database: 'mysql'
-});
-connection.connect();
+var mysql = require('./_mysql');
+var test = require('./_test');
 
 app.get('/', function (req, res) {
-  connection.query('SELECT 1 + 1 AS solution', function (err, result) {
-    if (err) {
-      res.send({status: 0, msg: 'Error'});
-    }
-    res.send({
-      status: 1,
-      result: result[0].solution
-    });
-    res.end();
-  });
+  test('Hello Test!');
+  mysql.log('Hello World!');
+  mysql.query(req, res);
 });
 
 var server = app.listen(3000, function () {
