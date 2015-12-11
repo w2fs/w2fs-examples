@@ -1,17 +1,17 @@
-const Koa = require('koa');
-const app = new Koa();
+'use strict';
 
-// logger
-app.use(async (ctx, next) => {
-  const start = new Date;
-  await next();
-  const ms = new Date - start;
-  console.log(`${ctx.method} ${ctx.url} - ${ms}ms`);
+var express = require('express');
+var app = express();
+app.set('view engine', 'jade'); //require jade
+app.set('views', './views'); //working directory
+
+app.get('/', function (req, res) {
+  res.render('index', {title: 'Hello World!', name: 'Willin Wang'});
 });
 
-// response
-app.use(ctx => {
-  ctx.body = 'Hello World';
-});
+var server = app.listen(3000, function () {
+  var host = server.address().address;
+  var port = server.address().port;
 
-app.listen(3000);
+  console.log('Example app listening at http://%s:%s', host, port);
+});
