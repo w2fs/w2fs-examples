@@ -22,7 +22,7 @@ SELECT 字段 FROM 表 WHERE 条件 GROUP BY 字段 ORDER BY 字段 DESC LIMIT 1
 
 `result` => 对象数组(Rows[])
 
-### 2. update
+### 2. update/delete
 
 ```sql
 UPDATE 表 SET 字段=值 WHERE 条件
