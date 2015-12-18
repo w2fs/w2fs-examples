@@ -1,0 +1,22 @@
+{
+  "name": "istanbul-mocha-example",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js",
+    "test": "./node_modules/.bin/istanbul cover ./node_modules/.bin/_mocha --bail"
+  },
+  "author": "willin wang",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.13.3",
+    "jade": "^1.11.0"
+  },
+  "devDependencies": {
+    "istanbul": "^0.4.1",
+    "mocha": "^2.3.4",
+    "should": "^8.0.1",
+    "supertest": "^1.1.0"
+  }
+}
