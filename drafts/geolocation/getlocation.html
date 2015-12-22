@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>获取当前位置</title>
+  <script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=Io7dbAVSIygKX1K1rWzbnNxT"></script>
+</head>
+<body>
+<div id="location"></div>
+<script type="text/javascript">
+  function handleLocationError(error) {
+    switch (error.code) {
+      case 0:
+        console.log("尝试获取您的位置信息时发生错误：" + error.message);
+        break;
+      case 1:
+        console.log("用户拒绝了获取位置信息请求。");
+        break;
+      case 2:
+        console.log("浏览器无法获取您的位置信息：" + error.message);
+        break;
+      case 3:
+        console.log("获取您位置信息超时。");
+        break;
+    }
+    //To Do Sth;
+  }
+  function getPositionSuccess(position) {
+    var lat = parseFloat(position.latitude);
+    var lng = parseFloat(position.longitude);
+    document.getElementById('location').innerHTML=lat + ',' + lng;
+  }
+  var geolocation = new BMap.Geolocation();
+  geolocation.getCurrentPosition(getPositionSuccess, handleLocationError, {
+    enableHighAccuracy: true,
+    maximumAge: 3600000,
+    timeout: 30000
+  });
+
+</script>
+</body>
+</html>

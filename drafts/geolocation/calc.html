@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>计算两点距离</title>
+  <script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=Io7dbAVSIygKX1K1rWzbnNxT"></script>
+</head>
+<body>
+<p>获取到的当前位置,到苏州三山岛32.026561,120.294053的距离.</p>
+<span class="geolocation" data-lat="31.026561" data-lng="120.294053">??KM</span>
+<script type="text/javascript">
+  /* Geolocation */
+  var EARTH_RADIUS = 6378137.0;    //单位M
+  var PI = Math.PI;
+
+  function getRad(d) {
+    return d * PI / 180.0;
+  }
+
+  function getDistance(lat1, lng1, lat2, lng2) {
+    var f = getRad((lat1 + lat2) / 2);
+    var g = getRad((lat1 - lat2) / 2);
+    var l = getRad((lng1 - lng2) / 2);
+
+    var sg = Math.sin(g);
+    var sl = Math.sin(l);
+    var sf = Math.sin(f);
+
+    var s, c, w, r, d, h1, h2;
+    var a = EARTH_RADIUS;
+    var fl = 1 / 298.257;
+
+    sg = sg * sg;
+    sl = sl * sl;
+    sf = sf * sf;
+
+    s = sg * (1 - sl) + (1 - sf) * sl;
+    c = (1 - sg) * (1 - sl) + sf * sl;
+
+    w = Math.atan(Math.sqrt(s / c));
+    r = Math.sqrt(s * c) / w;
+    d = 2 * w * a;
+    h1 = (3 * r - 1) / 2 / c;
+    h2 = (3 * r + 1) / 2 / s;
+
+    return d * (1 + fl * (h1 * sf * (1 - sg) - h2 * (1 - sf) * sg));
+  }
+  function handleLocationError(error) {
+    switch (error.code) {
+      case 0:
+        console.log("尝试获取您的位置信息时发生错误：" + error.message);
+        break;
+      case 1:
+        console.log("用户拒绝了获取位置信息请求。");
+        break;
+      case 2:
+        console.log("浏览器无法获取您的位置信息：" + error.message);
+        break;
+      case 3:
+        console.log("获取您位置信息超时。");
+        break;
+    }
+    //To Do Sth;
+  }
+  function getPositionSuccess(position) {
+    var lat = parseFloat(position.latitude);
+    var lng = parseFloat(position.longitude);
+    var items = document.querySelectorAll('.geolocation');
+    for (var i = 0; i < items.length; i++) {
+      var tmp_lat = items[i].getAttribute('data-lat'), tmp_lng = items[i].getAttribute('data-lng');
+      var dist = getDistance(lat, lng, parseFloat(tmp_lat), parseFloat(tmp_lng));
+      dist = (dist < 1000) ? (dist.toFixed(2) + 'M') : ((dist / 1000).toFixed(2) + 'KM');
+      items[i].innerHTML = dist;
+    }
+  }
+  var geolocation = new BMap.Geolocation();
+  geolocation.getCurrentPosition(getPositionSuccess, handleLocationError, {
+    enableHighAccuracy: true,
+    maximumAge: 3600000,
+    timeout: 30000
+  });
+
+</script>
+</body>
+</html>
