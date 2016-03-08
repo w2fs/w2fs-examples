@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <title>Basic</title>
+  <script type="text/javascript" src="./countdown.js"></script>
+</head>
+<body>
+<header>
+  <h1>Title</h1>
+</header>
+<div id="main">
+  <article>
+    <h2>Article Title</h2>
+    <div class="meta">
+      <time datetime="2015-11-20">2015-11-20</time>
+    </div>
+    <section>
+      Content
+    </section>
+  </article>
+
+  <article>
+    <h2>Article Title</h2>
+    <div class="meta">
+      <time datetime="2015-11-20">2015-11-20</time>
+    </div>
+    <section>
+      Content
+    </section>
+  </article>
+
+  <article>
+    <h2>Article Title</h2>
+    <div class="meta">
+      <time datetime="2015-11-20">2015-11-20</time>
+    </div>
+    <section>
+      Content
+    </section>
+  </article>
+
+  <article>
+    <h2>Article Title</h2>
+    <div class="meta">
+      <time datetime="2015-11-20">2015-11-20</time>
+    </div>
+    <section>
+      Content
+    </section>
+  </article>
+
+  <article>
+    <h2>Article Title</h2>
+    <div class="meta">
+      <time datetime="2015-11-20">2015-11-20</time>
+    </div>
+    <section>
+      Content
+    </section>
+  </article>
+
+  <article>
+    <h2>Article Title</h2>
+    <div class="meta">
+      <time datetime="2015-11-20">2015-11-20</time>
+    </div>
+    <section>
+      Content
+    </section>
+  </article>
+</div>
+<footer>
+  <p>&copy; Willin Wang</p>
+</footer>
+<script type="text/javascript">
+  window.onload = function () {
+    var items = document.querySelectorAll('.meta time');
+    for (var i = 0; i < items.length; i++) {
+      var result = cd(items[i].getAttribute('datetime'))
+      items[i].innerHTML = (result.years > 0 ? result.years + '年' : '') + result.days + '天前';
+    }
+  }
+</script>
+</body>
+</html>

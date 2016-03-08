@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <title>Ajax</title>
+  <script type="text/javascript" src="./countdown.js"></script>
+</head>
+<body>
+<header>
+  <h1>Title</h1>
+</header>
+<div id="main">
+  <article>
+    <h2>Article Title</h2>
+    <div class="meta">
+      <time datetime="2015-11-20 12:25:22">2015-11-20</time>
+    </div>
+    <section>
+      Content
+    </section>
+  </article>
+
+  <article>
+    <h2>Article Title</h2>
+    <div class="meta">
+      <time datetime="2015-11-20 08:00:11">2015-11-20</time>
+    </div>
+    <section>
+      Content
+    </section>
+  </article>
+
+  <article>
+    <h2>Article Title</h2>
+    <div class="meta">
+      <time datetime="2015-11-20 21:00:11">2015-11-20</time>
+    </div>
+    <section>
+      Content
+    </section>
+  </article>
+</div>
+<button onclick="test();">Next Page</button>
+<footer>
+  <p>&copy; Willin Wang</p>
+</footer>
+<script type="text/javascript">
+  var html = '<article> <h2>Article Title</h2> <div class="meta"> <time datetime="2015-11-20 12:25:22">2015-11-20</time> </div> <section> Content </section> </article>';
+  var calcDays = function(){
+    var items = document.querySelectorAll('.meta time');
+    for (var i = 0; i < items.length; i++) {
+      var result = cd(items[i].getAttribute('datetime'))
+      items[i].innerHTML = (result.years > 0 ? result.years + '年' : '') + result.days + '天前';
+    }
+  }
+  var test = function () {
+    document.getElementById('main').innerHTML = document.getElementById('main').innerHTML + html + html + html;
+    calcDays();
+  }
+  calcDays();
+</script>
+</body>
+</html>
