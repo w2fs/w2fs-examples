@@ -23,12 +23,17 @@ context('lib/common', function () {
   it('3+5 should be 8', function () {
     //正常结束
     comm.add(3, 5).should.equal(8);
+    comm.add(3, 5).should.equal(8);
+    comm.add(3, 5).should.equal(8);
   });
   it('5-3 should be 2', function (next) {
     //Promise 结束需要next
     comm.minus(5, 3).then(function (result) {
       result.should.equal(2);
-      next();
+      comm.minus(5,2).then(function(result){
+        result.should.equal(3);
+        next();
+      }).catch(console.trace);
     });
   });
 });
